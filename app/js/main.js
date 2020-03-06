@@ -27,11 +27,11 @@ Highcharts.setOptions({
     }
 });
 
-let chartId = document.getElementById("chart-container");
+let chartIdStockSurvey = document.getElementById("chart-container-stock-survey");
 
 // checks for the chart ID and displays a backup image if the browser can't find it
 setTimeout(function() {
-    if(chartId.innerHTML === "") {
+    if(chartIdStockSurvey.innerHTML === "") {
         // console.log('noId');
         let chartArea = document.getElementsByClassName("chart-area");
         for(var i = 0; i < chartArea.length; i++) {
@@ -45,23 +45,25 @@ setTimeout(function() {
 },500);
 
 function drawHighcharts() {
-    Highcharts.chart(chartId, {
+    Highcharts.chart(chartIdStockSurvey, {
         chart: {
             type: 'bar',
             styledMode: true,
             spacingBottom: 25,
-            spacingRight: 100
+            spacingRight: 100,
+            spacingLeft: 0
         }, 
         title: {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1tQqvdM7pV0lM_U9domJZ8lOofTvLjNGHzZaiHYr5j-g'
         },
         // for bar charts only
         plotOptions: {
             series: {
-                groupPadding: 0.1
+                groupPadding: 0.2,
+                pointPadding: 0.15
             } 
         },
         // for line charts only
@@ -94,7 +96,8 @@ function drawHighcharts() {
                     whiteSpace: 'nowrap'
                 }
             },
-            tickLength: 5
+            tickLength: 5,
+            type: 'category'
         },
         yAxis: {
             title: false,
@@ -108,7 +111,8 @@ function drawHighcharts() {
         },
         tooltip: {
             shadow: false,
-            padding: 10
+            padding: 10,
+            valueSuffix: '%'
         },
         responsive: {
             rules: [{
@@ -121,7 +125,7 @@ function drawHighcharts() {
                 },
                 legend: {
                     align: 'left',
-                    x: -18
+                    x: -10
                 },
                 tooltip: {
                     enabled: false
